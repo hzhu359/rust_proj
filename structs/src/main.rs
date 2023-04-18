@@ -79,6 +79,76 @@ fn main() {
     // if you want a "unit-like" struct (stores no data)
     struct FunTrait;
     // declare as such
-    // we can use this to define traits:
+    // we can use this to define traits
 
+    // here's a rectangle struct
+    // we add the derivable Debug trait to allow us to print
+    // its attributes when we call print on it
+    #[derive(Debug)]
+    struct Rectangle {
+        width: u32,
+        height: u32,
+    }
+
+    let rect1 = Rectangle {
+        width: 20,
+        height: 40,
+    };
+
+    println!("here's our rectangle: {:#?}", rect1);
+
+    // let's tie some methods to the rectangle struct
+    // methods are like functions, but they are strictly within context of an object like a struct
+    // they always take `self` as their first parameter, which refers to the object itself
+    // define methods suchly
+
+    // specify that this only applies to Rectangles
+    impl Rectangle {
+        // we immutably borrow a rectangle's self here
+        fn area(&self) -> u32 {
+            self.width * self.height
+        }
+
+        // what about more parameters?
+        fn can_hold(&self, rect: &Rectangle) -> bool {
+            self.width > rect.width && self.height > rect.height
+        }
+
+        // here's an associated function
+        // it's static - doesn't need an instance
+        // often used to constructors
+        fn square(dim: u32) -> Self {
+            Rectangle {
+                width: dim,
+                height: dim,
+            }
+        }
+    }
+
+    println!("the area of our rectangle is {}", rect1.area());
+
+    let rect2 = Rectangle {
+        width: 10,
+        height: 10,
+    };
+
+    println!(
+        "can {:#?} hold {:#?}? {}",
+        rect1,
+        rect2,
+        rect1.can_hold(&rect2)
+    );
+
+    println!(
+        "can {:#?} hold {:#?}? {}",
+        rect2,
+        rect1,
+        rect2.can_hold(&rect1)
+    );
+
+    // access associated functions using ::
+    //      accesses a namespace
+    let square = Rectangle::square(35);
+
+    println!("here's a square: {:#?}", square);
 }
