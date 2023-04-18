@@ -1,5 +1,16 @@
 fn main() {
     christmas();
+
+    println!(
+        "324 fahrenheit to celsius: {}",
+        fahrenheit_to_celsius(324.0)
+    );
+    println!(
+        "324 celsius to fahrenheit: {}",
+        celsius_to_fahrenheit(324.0)
+    );
+
+    print!("14th fibonacci: {}", fib(14));
 }
 
 // Convert temperatures between Fahrenheit and Celsius.
