@@ -39,4 +39,16 @@ fn main() {
         add_option_i32(maybe_number_1, maybe_number_2)
     );
     println!("some + some: {:?}", add_option_i32(Some(32), Some(434)));
+
+    // if let and else expressions
+
+    let res: i32;
+
+    if let Some(num) = maybe_number_1 {
+        res = num;
+    } else {
+        res = 0;
+    }
+
+    println!("result of if let: {}", res);
 }

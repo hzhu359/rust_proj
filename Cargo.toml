@@ -11,6 +11,9 @@ members = [
     "ownership",
     "structs",
     "variables",
-    "enums"
+    "enums",
+    "restaurant",
+    "data_structures",
+    "chapter_eight_exs"
 ]
 
